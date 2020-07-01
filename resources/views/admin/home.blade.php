@@ -37,6 +37,8 @@
                     let timeInBorderColor = moment(element.timein, FORMAT).isBefore(moment(START_TIME, FORMAT)) ? 'green' : 'red';
                     let timeOutBackgroundColor = moment(element.timeout, FORMAT).isAfter(moment(END_TIME, FORMAT)) ? 'green' : 'red';
                     let timeOutBorderColor = moment(element.timeout, FORMAT).isAfter(moment(END_TIME, FORMAT)) ? 'green' : 'red';
+                    let tempBackgroundColor = element.temp >= 37 ? 'orange' : 'green';
+                    let tempBorderColor = element.temp >= 37 ? 'orange' : 'green';
                     let inEvent = {
                         title: element.timein,
                         start: element.day,
@@ -51,7 +53,14 @@
                         backgroundColor: timeOutBackgroundColor,
                         borderColor: timeOutBorderColor
                     };
-                    events.push(inEvent, outEvent);
+                    let temp = {
+                        title: `${element.temp}`,
+                        start: element.day,
+                        end: element.day,
+                        backgroundColor: tempBackgroundColor,
+                        borderColor: tempBorderColor
+                    };
+                    events.push(inEvent, outEvent, temp);
                 }
             }
             console.log(events);

@@ -26,6 +26,7 @@
                             <tr>
                                 <th style="width: 10px;">#</th>
                                 <th>Tên</th>
+                                <th>Nhiệt độ</th>
                                 <th>Thời gian checkin</th>
                                 <th>Thời gian checkout</th>
                                 <th>Ngày làm việc</th>
@@ -35,6 +36,7 @@
                                 <tr>
                                     <td style="vertical-align: middle;">{{ $loop->iteration }}</td>
                                     <td style="vertical-align: middle;">{{ $diary->staff->name }}</td>
+                                    <td style="vertical-align: middle;">{{ $diary->temp }}</td>
                                     <td style="vertical-align: middle;">{{ $diary->timein }}</td>
                                     <td style="vertical-align: middle;">{{ $diary->timeout }}</td>
                                     <td style="vertical-align: middle;">{{ $diary->day }}</td>
@@ -76,6 +78,8 @@
                     let timeInBorderColor = moment(element.timein, FORMAT).isBefore(moment(START_TIME, FORMAT)) ? 'green' : 'red';
                     let timeOutBackgroundColor = moment(element.timeout, FORMAT).isAfter(moment(END_TIME, FORMAT)) ? 'green' : 'red';
                     let timeOutBorderColor = moment(element.timeout, FORMAT).isAfter(moment(END_TIME, FORMAT)) ? 'green' : 'red';
+                    let tempBackgroundColor = element.temp >= 37 ? 'orange' : 'green';
+                    let tempBorderColor = element.temp >= 37 ? 'orange' : 'green';
                     let inEvent = {
                         title: element.timein,
                         start: element.day,
@@ -90,7 +94,14 @@
                         backgroundColor: timeOutBackgroundColor,
                         borderColor: timeOutBorderColor
                     };
-                    events.push(inEvent, outEvent);
+                    let temp = {
+                        title: `${element.temp}`,
+                        start: element.day,
+                        end: element.day,
+                        backgroundColor: tempBackgroundColor,
+                        borderColor: tempBorderColor
+                    };
+                    events.push(inEvent, outEvent, temp);
                 }
             }
             console.log(events);
