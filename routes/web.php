@@ -28,3 +28,7 @@ Route::group(['prefix' => 'rolling-system'], function() {
         Route::get('staff-diaries-export/{id}', 'UserController@staffExport')->name('staffs.diaries_export');
     });
 });
+
+Route::get('/', function () {
+    return redirect()->route('home');
+});
