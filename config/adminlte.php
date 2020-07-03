@@ -260,8 +260,8 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => 'https://fullcalendar.io/js/fullcalendar-2.2.5/lib/moment.min.js',
+                    'asset' => true,
+                    'location' => 'js/moment.min.js',
                 ],
             ],
         ],
@@ -271,13 +271,13 @@ return [
             'files' => [
                 [
                     'type' => 'css',
-                    'asset' => false,
-                    'location' => 'https://fullcalendar.io/js/fullcalendar-2.2.5/fullcalendar.css',
+                    'asset' => true,
+                    'location' => 'css/fullcalendar.css',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => 'https://fullcalendar.io/js/fullcalendar-2.2.5/fullcalendar.min.js',
+                    'asset' => true,
+                    'location' => 'js/fullcalendar.min.js',
                 ],
             ],
         ],
