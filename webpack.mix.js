@@ -12,4 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .copy('resources/js/plugins/moment.min.js', 'public/js/moment.min.js')
+    .copy('resources/js/plugins/fullcalendar.min.js', 'public/js/fullcalendar.min.js')
+    .copy('resources/sass/plugins/fullcalendar.css', 'public/css/fullcalendar.css');

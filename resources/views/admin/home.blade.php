@@ -63,7 +63,6 @@
                     events.push(inEvent, outEvent, temp);
                 }
             }
-            console.log(events);
 
 
             $('#calendar').fullCalendar({
