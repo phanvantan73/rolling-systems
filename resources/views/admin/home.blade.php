@@ -27,18 +27,27 @@
             const FORMAT = 'HH:mm:ss';
             const START_TIME = '09:00:00';
             const END_TIME = '17:00:00';
+            const OVER_TEMP = 37.3;
             let data = $('#calendar').data('calendar');
             let events = [];
 
             for (const item in data) {
                 if (data.hasOwnProperty(item)) {
                     const element = data[item];
-                    let timeInBackgroundColor = moment(element.timein, FORMAT).isBefore(moment(START_TIME, FORMAT)) ? 'green' : 'red';
-                    let timeInBorderColor = moment(element.timein, FORMAT).isBefore(moment(START_TIME, FORMAT)) ? 'green' : 'red';
-                    let timeOutBackgroundColor = moment(element.timeout, FORMAT).isAfter(moment(END_TIME, FORMAT)) ? 'green' : 'red';
-                    let timeOutBorderColor = moment(element.timeout, FORMAT).isAfter(moment(END_TIME, FORMAT)) ? 'green' : 'red';
-                    let tempBackgroundColor = element.temp >= 37 ? 'orange' : 'green';
-                    let tempBorderColor = element.temp >= 37 ? 'orange' : 'green';
+                    let timeInBackgroundColor = (element.temp <= OVER_TEMP && element.timein) ? 
+                        (moment(element.timein, FORMAT).isBefore(moment(START_TIME, FORMAT)) ? 'green' : 'red')
+                        : 'white';
+                    let timeInBorderColor = (element.temp <= OVER_TEMP && element.timein) ? 
+                        (moment(element.timein, FORMAT).isBefore(moment(START_TIME, FORMAT)) ? 'green' : 'red')
+                        : 'white';
+                    let timeOutBackgroundColor = (element.temp <= OVER_TEMP && element.timeout) ? 
+                        (moment(element.timeout, FORMAT).isAfter(moment(END_TIME, FORMAT)) ? 'green' : 'red')
+                        : 'white';
+                    let timeOutBorderColor = (element.temp <= OVER_TEMP && element.timeout) ? 
+                        (moment(element.timeout, FORMAT).isAfter(moment(END_TIME, FORMAT)) ? 'green' : 'red')
+                        : 'white';
+                    let tempBackgroundColor = element.temp > OVER_TEMP ? 'orange' : 'green';
+                    let tempBorderColor = element.temp > OVER_TEMP ? 'orange' : 'green';
                     let inEvent = {
                         title: `${element.timein}`,
                         start: element.day,
@@ -70,6 +79,7 @@
                     events.push(inEvent, divideEvent, outEvent, divideEvent, temp);
                 }
             }
+            console.log(events);
 
 
             $('#calendar').fullCalendar({
