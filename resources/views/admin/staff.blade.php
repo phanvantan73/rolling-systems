@@ -95,7 +95,7 @@
                         borderColor: timeOutBorderColor
                     };
                     let temp = {
-                        title: `${element.temp}`,
+                        title: `${element.temp}°C`,
                         start: element.day,
                         end: element.day,
                         backgroundColor: tempBackgroundColor,
