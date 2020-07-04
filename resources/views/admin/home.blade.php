@@ -40,27 +40,34 @@
                     let tempBackgroundColor = element.temp >= 37 ? 'orange' : 'green';
                     let tempBorderColor = element.temp >= 37 ? 'orange' : 'green';
                     let inEvent = {
-                        title: element.timein,
+                        title: `${element.timein}`,
                         start: element.day,
                         end: element.day,
                         backgroundColor: timeInBackgroundColor,
                         borderColor: timeInBorderColor
                     };
+                    let divideEvent = {
+                        title: '-----------',
+                        start: element.day,
+                        end: element.day,
+                        backgroundColor: 'white',
+                        borderColor: 'white'
+                    };
                     let outEvent = {
-                        title: element.timeout,
+                        title: `${element.timeout}`,
                         start: element.day,
                         end: element.day,
                         backgroundColor: timeOutBackgroundColor,
                         borderColor: timeOutBorderColor
                     };
                     let temp = {
-                        title: `${element.temp}`,
+                        title: `${element.temp}°C`,
                         start: element.day,
                         end: element.day,
                         backgroundColor: tempBackgroundColor,
                         borderColor: tempBorderColor
                     };
-                    events.push(inEvent, outEvent, temp);
+                    events.push(inEvent, divideEvent, outEvent, divideEvent, temp);
                 }
             }
 

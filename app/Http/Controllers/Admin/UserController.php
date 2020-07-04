@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Exports\StaffExport;
 use App\Models\Staff;
+use App\Exports\StaffExport;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileRequest;
+use App\Traits\GenerateDataChartTrait;
 
 class UserController extends Controller
 {
+    use GenerateDataChartTrait;
+
     public function index()
     {
         $staffs = Staff::with('user')->where('id', '!=', auth()->user()->idNv)->get();
+        $data = $this->generateDataForChart();
 
-        return view('admin.users', compact('staffs'));
+        return view('admin.users', compact('staffs', 'data'));
     }
 
     public function show($id)
