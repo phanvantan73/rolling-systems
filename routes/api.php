@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('get-data-by-year', 'Api\UserController@index')->name('get_data_by_year');
+
+Route::get('check-in', 'Api\UserController@checkin')->name('checkin');
